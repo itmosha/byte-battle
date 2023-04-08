@@ -9,14 +9,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
+func logNotSpecifiedError(varName string) {
+	log.Fatalf("SERVER CONFIG ERROR: %s variable was not specified in .env file", varName)
+}
+
 type Config struct {
 	BackendPort string
 	LogLevel    string
 	Store       *store.Config
-}
-
-func logNotSpecifiedError(varName string) {
-	log.Fatalf("SERVER CONFIG ERROR: %s variable was not specified in .env file", varName)
 }
 
 func NewConfig() *Config {

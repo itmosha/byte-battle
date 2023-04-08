@@ -1,0 +1,5 @@
+CREATE TABLE courses (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    slug CHAR(50) NOT NULL UNIQUE,
+    title CHAR(100) NOT NULL
+);
