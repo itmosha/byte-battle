@@ -10,6 +10,7 @@ const Header = ():JSX.Element => {
       <div className="w-3/4 px-4 flex flex-row justify-between">
         <a className="inline-block" href="#">Курсы</a>      
         <a className="inline-block" href="#">Войти</a>  
+        <a className="inline-block" href="#">Регистрация</a>  
       </div>     
     </div>
   )
