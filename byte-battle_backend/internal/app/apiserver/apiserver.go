@@ -1,17 +1,16 @@
 package apiserver
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 
 	"github.com/Mihalych32/byte-battle/tree/main/byte-battle_backend/internal/app/store"
 	"github.com/gorilla/mux"
-	"github.com/sirupsen/logrus"
 )
 
 type APIserver struct {
 	config *Config
-	logger *logrus.Logger
 	router *mux.Router
 	store  *store.Store
 }
@@ -19,35 +18,20 @@ type APIserver struct {
 func New(config *Config) *APIserver {
 	return &APIserver{
 		config: config,
-		logger: logrus.New(),
 		router: mux.NewRouter(),
 	}
 }
 
 func (s *APIserver) Start() error {
-	if err := s.configureLogger(); err != nil {
-		return err
-	}
-
 	s.configureRouter()
 
 	if err := s.configureStore(); err != nil {
 		return err
 	}
 
-	s.logger.Info("Starting API server...")
+	fmt.Print("INFO: Server started")
 
 	return http.ListenAndServe(s.config.BackendPort, s.router)
-}
-
-func (s *APIserver) configureLogger() error {
-	level, err := logrus.ParseLevel(s.config.LogLevel)
-	if err != nil {
-		return err
-	}
-	s.logger.SetLevel(level)
-
-	return nil
 }
 
 func (s *APIserver) configureRouter() {

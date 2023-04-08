@@ -15,24 +15,28 @@ type Config struct {
 	Store       *store.Config
 }
 
+func logNotSpecifiedError(varName string) {
+	log.Fatalf("SERVER CONFIG ERROR: %s variable was not specified in .env file", varName)
+}
+
 func NewConfig() *Config {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	backend_port, log_level := fmt.Sprintf(":%s", os.Getenv("BACKEND_PORT")), os.Getenv("LOG_LEVEL")
+	backendPort, logLevel := fmt.Sprintf(":%s", os.Getenv("BACKEND_PORT")), os.Getenv("LOG_LEVEL")
 
-	if backend_port == ":" {
-		log.Fatal("ERROR: BACKEND_PORT was not specified in .env file")
+	if backendPort == ":" {
+		logNotSpecifiedError("BACKEND_PORT")
 	}
-	if log_level == "" {
-		log.Fatal("ERROR: LOG_LEVEL was not specified in .env file")
+	if logLevel == "" {
+		logNotSpecifiedError("LOG_LEVEL")
 	}
 
 	return &Config{
-		BackendPort: backend_port,
-		LogLevel:    log_level,
+		BackendPort: backendPort,
+		LogLevel:    logLevel,
 		Store:       store.NewConfig(),
 	}
 }
