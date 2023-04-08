@@ -1,11 +1,9 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ():JSX.Element => {
   return (
-    <div className="border-2 border-black bg-footer">
-      <div className="h-12"></div>
-      <div></div>
-      <div></div>
+    <div className="footer">
+      <p className="text-footerText">Build by Mihalych32 & itmosha</p>
     </div>
   )
 }

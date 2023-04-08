@@ -1,9 +1,9 @@
 import React from "react";
 import "../../src/index.css"
 
-const Header = () => {
+const Header = ():JSX.Element => {
   return (
-    <div className=" bg-gradient-to-b from-header to-header fixed top-0 w-full z-10 h-16 p-2 flex flex-row justify-between items-center">
+    <div className="header">
       <div className="w-1/4 px-4">
         <a className="inline-block" href="#">LOGO</a> 
       </div>
