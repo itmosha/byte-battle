@@ -1,10 +1,8 @@
 package store
 
 import (
-	"log"
+	"byte-battle_backend/pkg/loggers"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -16,44 +14,35 @@ type Config struct {
 	DatabaseSSLMode  string
 }
 
-func logNotSpecifiedError(varName string) {
-	log.Fatalf("STORE CONFIG ERROR: %s variable was not specified in .env file", varName)
-}
-
 func NewConfig() *Config {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	dbHost := os.Getenv("POSTGRES_HOST")
 	if dbHost == "" {
-		logNotSpecifiedError("POSTGRES_HOST")
+		loggers.VariableNotFound("POSTGRES_HOST")
 	}
 
 	dbPort := os.Getenv("POSTGRES_PORT")
 	if dbPort == "" {
-		logNotSpecifiedError("POSTGRES_PORT")
+		loggers.VariableNotFound("POSTGRES_PORT")
 	}
 
 	dbName := os.Getenv("POSTGRES_NAME")
 	if dbName == "" {
-		logNotSpecifiedError("POSTGRES_NAME")
+		loggers.VariableNotFound("POSTGRES_NAME")
 	}
 
 	dbUser := os.Getenv("POSTGRES_USER")
 	if dbUser == "" {
-		logNotSpecifiedError("POSTGRES_USER")
+		loggers.VariableNotFound("POSTGRES_USER")
 	}
 
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	if dbPassword == "" {
-		logNotSpecifiedError("POSTGRES_PASSWORD")
+		loggers.VariableNotFound("POSTGRES_PASSWORD")
 	}
 
 	dbSSLmode := os.Getenv("POSTGRES_SSLMODE")
 	if dbSSLmode == "" {
-		logNotSpecifiedError("POSTGRES_SSLMODE")
+		loggers.VariableNotFound("POSTGRES_SSLMODE")
 	}
 
 	return &Config{

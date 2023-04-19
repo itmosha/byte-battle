@@ -1,16 +1,22 @@
 package main
 
 import (
-	"log"
+	"byte-battle_backend/internal/app/apiserver"
+	"byte-battle_backend/pkg/loggers"
 
-	"github.com/Mihalych32/byte-battle/tree/main/byte-battle_backend/internal/app/apiserver"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		loggers.LoadEnvFailure()
+	}
+
 	config := apiserver.NewConfig()
 
 	s := apiserver.New(config)
 	if err := s.Start(); err != nil {
-		log.Fatal(err)
+		loggers.StartServerFailure(err)
 	}
 }

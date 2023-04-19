@@ -2,6 +2,5 @@
 /byte-battle_frontend/src/vite-env.d.ts
 /byte-battle_frontend/package-lock.json
 /byte-battle_backend/go.sum
-/byte_battle_backend/apiserver
 **/*.env
 **/*.exe

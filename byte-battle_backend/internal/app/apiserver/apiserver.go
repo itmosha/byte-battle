@@ -1,11 +1,11 @@
 package apiserver
 
 import (
-	"fmt"
+	"byte-battle_backend/internal/app/store"
+	"byte-battle_backend/pkg/loggers"
 	"io"
 	"net/http"
 
-	"github.com/Mihalych32/byte-battle/tree/main/byte-battle_backend/internal/app/store"
 	"github.com/gorilla/mux"
 )
 
@@ -29,7 +29,7 @@ func (s *APIserver) Start() error {
 		return err
 	}
 
-	fmt.Print("INFO: Server started")
+	loggers.StartServerSuccess()
 
 	return http.ListenAndServe(s.config.BackendPort, s.router)
 }
