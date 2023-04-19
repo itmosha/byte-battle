@@ -4,3 +4,4 @@
 /byte-battle_backend/go.sum
 **/*.env
 **/*.exe
+**/*.vscode
