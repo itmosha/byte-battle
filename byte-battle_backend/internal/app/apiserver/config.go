@@ -4,12 +4,12 @@ import (
 	"byte-battle_backend/internal/app/store"
 	"byte-battle_backend/pkg/loggers"
 	"fmt"
+	"net/http"
 	"os"
 )
 
 type Config struct {
 	BackendPort string
-	LogLevel    string
 	Store       *store.Config
 }
 
@@ -24,4 +24,25 @@ func NewConfig() *Config {
 		BackendPort: backendPort,
 		Store:       store.NewConfig(),
 	}
+}
+
+func (s *APIserver) configureStore() error {
+	st := store.New(s.config.Store)
+	if err := st.Open(); err != nil {
+		return err
+	}
+
+	s.store = st
+	return nil
+}
+
+func configHeaders(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Headers", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+	(*w).Header().Set("Content-Type", "application/json; charset=UTF-8")
+}
+
+func (s *APIserver) configureRouter() {
+	s.router.HandleFunc("/api/register/", s.handleRegister()).Methods("POST", "OPTIONS")
 }

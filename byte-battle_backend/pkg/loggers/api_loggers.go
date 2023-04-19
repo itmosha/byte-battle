@@ -12,5 +12,5 @@ func ApiRequestSuccess(method string, path string, status int) {
 }
 
 func ApiRequestFailure(method string, path string, status int) {
-	fmt.Println(color.RedString("API REQUEST: %s /api%s [%s %s]\n", method, path, status, http.StatusText(status)))
+	fmt.Println(color.RedString("API REQUEST: %s /api/%s [%d %s]", method, path, status, http.StatusText(status)))
 }
