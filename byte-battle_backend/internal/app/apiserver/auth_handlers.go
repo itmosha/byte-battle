@@ -6,7 +6,6 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -119,7 +118,6 @@ func (s *APIserver) handleRegister() http.HandlerFunc {
 			user, err = s.store.User().CreateInstance(user)
 
 			if err != nil {
-				fmt.Println(err.Error())
 				w.WriteHeader(http.StatusInternalServerError)
 				resp, _ := json.Marshal(map[string]string{"message": "Could not query the database"})
 				w.Write(resp)
@@ -200,8 +198,6 @@ func (s *APIserver) handleLogin() http.HandlerFunc {
 
 			// Query the database
 
-			fmt.Println(user)
-
 			token, err := s.store.User().Login(user)
 
 			if err != nil {
@@ -210,7 +206,6 @@ func (s *APIserver) handleLogin() http.HandlerFunc {
 				w.Write(resp)
 
 				loggers.ApiRequestFailure("POST", "login/", http.StatusBadRequest)
-				fmt.Println(err)
 				return
 			}
 

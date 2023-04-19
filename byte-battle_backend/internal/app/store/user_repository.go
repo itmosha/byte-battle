@@ -93,8 +93,6 @@ func (r *UserRepository) Login(user *model.User) (string, error) {
 
 	// Construct the query depending on what was provided: usename or email
 
-	fmt.Println(user)
-
 	if user.Username == "" {
 		query = fmt.Sprintf("SELECT id, username, role, encrypted_pwd FROM users WHERE email='%s';", user.Email)
 		err = r.store.db.QueryRow(query).Scan(&user.ID, &user.Username, &user.Role, &encryptedPwdDb)
