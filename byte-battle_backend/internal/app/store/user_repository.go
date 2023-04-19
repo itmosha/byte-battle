@@ -2,6 +2,7 @@ package store
 
 import (
 	"byte-battle_backend/internal/app/model"
+	jwtfuncs "byte-battle_backend/pkg/jwt_funcs"
 	"database/sql"
 	"fmt"
 )
@@ -73,4 +74,52 @@ func (r *UserRepository) CheckUniqueValue(fieldName string, value string) (bool,
 		}
 	}
 	return false, nil
+}
+
+func (r *UserRepository) Login(user *model.User) (string, error) {
+
+	/**
+
+	Find the requested user's info in the db, check if the password is valid, make a JWT and send it back.
+	Return error if that user doesn't exist or the password is wrong.
+
+	*/
+
+	var (
+		query          string
+		err            error
+		encryptedPwdDb string
+	)
+
+	// Construct the query depending on what was provided: usename or email
+
+	fmt.Println(user)
+
+	if user.Username == "" {
+		query = fmt.Sprintf("SELECT id, username, role, encrypted_pwd FROM users WHERE email='%s';", user.Email)
+		err = r.store.db.QueryRow(query).Scan(&user.ID, &user.Username, &user.Role, &encryptedPwdDb)
+	} else if user.Username != "" {
+		query = fmt.Sprintf("SELECT id, email, role, encrypted_pwd FROM users WHERE username='%s';", user.Username)
+		err = r.store.db.QueryRow(query).Scan(&user.ID, &user.Email, &user.Role, &encryptedPwdDb)
+	} else {
+		return "", fmt.Errorf("No username or email was provided")
+	}
+
+	if err != nil {
+		return "", err
+	}
+
+	// Check if the password is valid
+
+	if user.EncryptedPwd != encryptedPwdDb {
+		return "", fmt.Errorf("Incorrect password provided")
+	}
+
+	token, err := jwtfuncs.GenerateJWT(user.Username, user.Email, int8(user.Role))
+
+	if err != nil {
+		return "", err
+	}
+
+	return token, nil
 }

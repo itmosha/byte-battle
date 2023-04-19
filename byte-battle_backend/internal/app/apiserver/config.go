@@ -45,4 +45,5 @@ func configHeaders(w *http.ResponseWriter) {
 
 func (s *APIserver) configureRouter() {
 	s.router.HandleFunc("/api/register/", s.handleRegister()).Methods("POST", "OPTIONS")
+	s.router.HandleFunc("/api/login/", s.handleLogin()).Methods("POST", "OPTIONS")
 }
