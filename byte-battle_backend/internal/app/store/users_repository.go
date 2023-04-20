@@ -15,7 +15,8 @@ func (r *UserRepository) CreateInstance(user *model.User) (*model.User, error) {
 
 	/**
 
-	Get a User instance without ID, perform INSERT, get ID and return instance with all fields.
+	This function creates a User row in users table with all the data required for authorization actions.
+	Also when the row is inserted, this functions creates a row in Profiles table with all the user's account info.
 
 	*/
 
@@ -25,6 +26,18 @@ func (r *UserRepository) CreateInstance(user *model.User) (*model.User, error) {
 	)
 
 	err := r.store.db.QueryRow(query).Scan(&user.ID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	profile := &model.Profile{
+		ID:       user.ID,
+		Username: user.Username,
+		Email:    user.Email,
+	}
+
+	profile, err = r.store.Profile().CreateInstance(profile)
 
 	if err != nil {
 		return nil, err

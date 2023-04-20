@@ -5,8 +5,8 @@ CREATE TABLE profiles (
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
 
-    status VARCHAR(255) NOT NULL UNIQUE,
-    image_url VARCHAR(255) NOT NULL UNIQUE,
+    status VARCHAR(255) UNIQUE,
+    image_url VARCHAR(255) UNIQUE,
     tasks_completed INTEGER DEFAULT 0,
 
     active_courses INTEGER ARRAY,

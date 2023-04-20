@@ -108,7 +108,7 @@ func (s *APIserver) handleRegister() http.HandlerFunc {
 
 			user := &model.User{
 				Username:     decodedBody.Username,
-				Email:        decodedBody.Username,
+				Email:        decodedBody.Email,
 				Role:         1,
 				EncryptedPwd: encrypted_pwd,
 			}

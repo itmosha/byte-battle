@@ -8,10 +8,11 @@ import (
 )
 
 type Store struct {
-	config      *Config
-	db          *sql.DB
-	usersRepo   *UserRepository
-	coursesRepo *CourseRepository
+	config       *Config
+	db           *sql.DB
+	usersRepo    *UserRepository
+	coursesRepo  *CourseRepository
+	profilesRepo *ProfileRepository
 }
 
 func New(config *Config) *Store {
@@ -65,4 +66,16 @@ func (s *Store) Course() *CourseRepository {
 	}
 
 	return s.coursesRepo
+}
+
+func (s *Store) Profile() *ProfileRepository {
+	if s.profilesRepo != nil {
+		return s.profilesRepo
+	}
+
+	s.profilesRepo = &ProfileRepository{
+		store: s,
+	}
+
+	return s.profilesRepo
 }
