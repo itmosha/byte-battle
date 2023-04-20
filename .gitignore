@@ -3,5 +3,6 @@
 /byte-battle_frontend/package-lock.json
 /byte-battle_backend/go.sum
 **/*.env
+**/*.local
 **/*.exe
 **/*.vscode
