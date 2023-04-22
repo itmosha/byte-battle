@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header.astro";
+import Header from "../components/Header";
 ---
 
 <html lang="en">
@@ -9,7 +9,7 @@ import Header from "../components/Header.astro";
 		<meta name="generator" content={Astro.generator} />
 		<title>Byte Battle</title>
 	</head>
-	<body class="min-h-screen bg-gray-900">
-		<Header />
+	<body class="min-h-screen bg-gray-900 relative">
+		<Header client:load/>
 	</body>
 </html>
