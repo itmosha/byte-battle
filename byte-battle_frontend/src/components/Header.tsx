@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import RegisterWindow from './RegisterWindow';
 import LoginWindow from './LoginWindow';
 
@@ -26,15 +26,15 @@ function Header(): JSX.Element {
                 <button
                     id="logo-button"
                 >
-                    <h1 className="text-gray-300/90 font-semibold text-2xl">
+                    <h1 className="text-gray-300/90 font-bold text-2xl">
                         BYTE BATTLE
                     </h1>
                 </button>
-                <div className="text-gray-300/70 font-medium">
+                <div className="text-gray-200/80 font-medium font-custom">
                     <button 
                         onClick={() => setShowRegisterWindow(!showRegisterWindow)}
-                        className="mr-2 px-4 py-1 rounded-full uppercase
-                            hover:bg-gray-500 hover:bg-opacity-20 hover:shadow-gray-500/20
+                        className="mr-4 px-4 py-1 rounded-full bg-gray-600/20
+                            hover:bg-gray-600/30 hover:shadow-gray-600/10
                             transition ease-in-out duration-200 shadow-lg"
                     >
                         <h1>
@@ -43,8 +43,8 @@ function Header(): JSX.Element {
                     </button>
                     <button 
                         onClick={() => setShowLoginWindow(!showLoginWindow)}
-                        className="mr-2 px-4 py-1 rounded-full uppercase
-                            hover:bg-gray-500 hover:bg-opacity-20 hover:shadow-gray-500/20
+                        className="mr-2 px-4 py-1 rounded-full bg-gray-600/20
+                            hover:bg-gray-600/30 hover:shadow-gray-600/10
                             transition ease-in-out duration-200 shadow-lg"
                     >
                         <h1>
