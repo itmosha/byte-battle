@@ -4,7 +4,16 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				custom: ['Work Sans', 'sans-serif']
+				'custom': ['Work Sans', 'sans-serif']
+			},
+			keyframes: {
+				fadeIn: {
+					'0%': { opacity: 0 },
+					'100%': { opacity: 1 },
+				},
+			},
+			animation: {
+				'fadein': 'fadeIn .5s ease-in',
 			},
 		},
 	},

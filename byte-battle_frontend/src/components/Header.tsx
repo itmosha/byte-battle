@@ -32,9 +32,9 @@ function Header(): JSX.Element {
                 </button>
                 <div className="text-gray-200/80 font-medium font-custom">
                     <button 
-                        onClick={() => setShowRegisterWindow(!showRegisterWindow)}
+                        onClick={() => setShowRegisterWindow(!showRegisterWindow) }
                         className="mr-4 px-4 py-1 rounded-full bg-gray-600/20
-                            hover:bg-gray-600/30 hover:shadow-gray-600/10
+                            hover:bg-blue-600/20 hover:shadow-blue-600/10
                             transition ease-in-out duration-200 shadow-lg"
                     >
                         <h1>
@@ -44,7 +44,7 @@ function Header(): JSX.Element {
                     <button 
                         onClick={() => setShowLoginWindow(!showLoginWindow)}
                         className="mr-2 px-4 py-1 rounded-full bg-gray-600/20
-                            hover:bg-gray-600/30 hover:shadow-gray-600/10
+                            hover:bg-blue-600/30 hover:shadow-blue-600/10
                             transition ease-in-out duration-200 shadow-lg"
                     >
                         <h1>
