@@ -14,9 +14,9 @@ services:
     image: migrate/migrate
     container_name: migrate
     volumes:
-      - .:/migrations
+      - .:/byte-battle_backend/migrations
     command:
-      [ "-path", "/migrations", "-database",  "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_NAME}?sslmode=${POSTGRES_SSLMODE}", "up" ]
+      [ "-path", "byte-battle_backend/migrations", "-database",  "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_NAME}?sslmode=${POSTGRES_SSLMODE}", "up" ]
   postgres:
     image: postgres:alpine
     container_name: postgres
