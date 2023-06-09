@@ -1,22 +1,6 @@
 version: '3.8'
 
 services:
-  gin:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: gin
-    ports:
-      - "8080:8080"
-    expose:
-      - 8080
-  migrate:
-    image: migrate/migrate
-    container_name: migrate
-    volumes:
-      - .:/byte-battle_backend/migrations
-    command:
-      [ "-path", "byte-battle_backend/migrations", "-database",  "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_NAME}?sslmode=${POSTGRES_SSLMODE}", "up" ]
   postgres:
     image: postgres:alpine
     container_name: postgres
@@ -41,5 +25,19 @@ services:
       retries: 5
       start_period: 30s
     restart: unless-stopped
-
-
+  migrate:
+    image: migrate/migrate
+    container_name: migrate
+    volumes:
+      - .:/byte-battle_backend/migrations
+    command:
+      [ "-path", "byte-battle_backend/migrations", "-database",  "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_NAME}?sslmode=${POSTGRES_SSLMODE}", "up" ]
+  gin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gin
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
