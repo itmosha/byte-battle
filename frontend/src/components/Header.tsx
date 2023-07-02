@@ -10,7 +10,7 @@ function Header(): JSX.Element {
 
   useEffect(() => {
     const logoButton = document.getElementById("logo-button");
-    logoButton.addEventListener('click', () => window.location.replace(`${import.meta.env.PUBLIC_PROTOCOL}://${import.meta.env.PUBLIC_HOSTNAME}:3000/`));
+	  logoButton.addEventListener('click', () => window.location.replace(`${import.meta.env.PUBLIC_PROTOCOL}://${import.meta.env.PUBLIC_HOSTNAME}:3000/`));
   }, []);
 
   return (

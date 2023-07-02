@@ -15,9 +15,9 @@ type Config struct {
 
 func NewConfig() *Config {
 
-	backendPort := fmt.Sprintf(":%s", os.Getenv("BACKEND_PORT"))
+	backendPort := fmt.Sprintf(":%s", os.Getenv("PUBLIC_BACKEND_PORT"))
 	if backendPort == ":" {
-		loggers.VariableNotFound("BACKEND_PORT")
+		loggers.VariableNotFound("PUBLIC_BACKEND_PORT")
 	}
 
 	return &Config{
