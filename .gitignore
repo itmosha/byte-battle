@@ -1,7 +1,9 @@
-/byte-battle_frontend/node_modules/
-/byte-battle_frontend/src/vite-env.d.ts
-/byte-battle_frontend/package-lock.json
-/byte-battle_backend/go.sum
+frontend/node_modules/
+frontend/src/vite-env.d.ts
+frontend/package-lock.json
+frontend/dist/
+backend/main
 **/*.env
+**/*.local
 **/*.exe
 **/*.vscode

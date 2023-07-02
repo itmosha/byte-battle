@@ -1,0 +1,4 @@
+CREATE TABLE courses (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL 
+);

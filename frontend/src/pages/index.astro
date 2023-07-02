@@ -1,0 +1,17 @@
+---
+import Header from "../components/Header";
+import '../styles/global.css';
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Byte Battle</title>
+	</head>
+	<body class="min-h-screen bg-gray-900 relative">
+		<Header client:load/>
+	</body>
+</html>
